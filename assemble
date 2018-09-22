@@ -6,4 +6,4 @@ ls -l
 ls -l /tmp/src/
 
 cd /tmp/src
-./gradlew build
+GRADLE_OPTS=-Dorg.gradle.daemon=false ./gradlew build
