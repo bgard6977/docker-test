@@ -1,1 +1,9 @@
+set -x
 echo "executing assemble script..."
+
+pwd
+ls -l
+ls -l /tmp/src/
+
+cd /tmp/src
+./gradlew build

@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 
-RUN echo "hello world" > test.txt && \
-    chmod ugo+r test.txt
+RUN apt-get update && apt-get install -y openjdk-8-jdk
 
 RUN useradd -u 1001 -ms /bin/bash builder
 USER 1001

@@ -1,1 +1,1 @@
-docker push bgard6977/docker-test:v6
+docker push bgard6977/docker-test
