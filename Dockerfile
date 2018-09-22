@@ -8,6 +8,9 @@ USER 1001
 WORKDIR /home/builder
 
 ADD assemble /home/builder/assemble
+ADD run /home/builder/run
 LABEL io.openshift.s2i.scripts-url=image:///home/builder
+
+EXPOSE 4567
 
 CMD cat test.txt

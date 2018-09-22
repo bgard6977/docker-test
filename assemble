@@ -1,9 +1,6 @@
 set -x
 echo "executing assemble script..."
 
-pwd
-ls -l
-ls -l /tmp/src/
-
 cd /tmp/src
-GRADLE_OPTS=-Dorg.gradle.daemon=false ./gradlew build
+GRADLE_OPTS="-Dorg.gradle.daemon=false -Xms200m -Xmx200m" ./gradlew build
+mv ./build/libs/*.jar ~
