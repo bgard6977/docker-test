@@ -1,3 +1,7 @@
+set -x
+echo "executing run script..."
+
+pwd
+ls -l
+
 java -jar *.jar
-
-
