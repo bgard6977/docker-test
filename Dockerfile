@@ -29,6 +29,6 @@ ADD assemble /home/builder/assemble
 ADD run /home/builder/run
 LABEL io.openshift.s2i.scripts-url=image:///home/builder
 
-EXPOSE 4567
+EXPOSE 8080
 
 CMD cat test.txt
