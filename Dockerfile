@@ -20,9 +20,16 @@ RUN unzip chromedriver_linux64.zip && \
 
 # postgres
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql postgresql-contrib
+RUN apt-get install net-tools telnet
+RUN sudo sed -i "s/peer/trust/g" /etc/postgresql/10/main/pg_hba.conf && \
+    service postgresql start && \
+    createdb -U postgres volcano && \
+    createdb -U postgres volcano_test
+# psql -c "ALTER USER postgres PASSWORD 'password';"
 
 # OpenShift
-RUN useradd -u 1001 -ms /bin/bash builder
+RUN useradd -u 1001 -ms /bin/bash builder && \
+    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 USER 1001
 WORKDIR /home/builder
 ADD assemble /home/builder/assemble
