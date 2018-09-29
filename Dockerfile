@@ -22,6 +22,7 @@ RUN unzip chromedriver_linux64.zip && \
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql postgresql-contrib
 RUN apt-get install net-tools telnet
 RUN sudo sed -i "s/peer/trust/g" /etc/postgresql/10/main/pg_hba.conf && \
+    sudo sed -i "s/md5/trust/g" /etc/postgresql/10/main/pg_hba.conf && \
     service postgresql start && \
     createdb -U postgres volcano && \
     createdb -U postgres volcano_test && \
