@@ -6,5 +6,5 @@ echo "executing assemble script..."
 cd /tmp/src
 whoami
 service postgresql start
-GRADLE_OPTS="-Dorg.gradle.daemon=false -Xms400m -Xmx400m" ./gradlew build
+GRADLE_OPTS="-Dorg.gradle.daemon=false -Xms400m -Xmx400m" ./gradlew build --stacktrace
 mv ./build/libs/*.jar ~
