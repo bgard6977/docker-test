@@ -24,17 +24,16 @@ RUN apt-get install net-tools telnet
 RUN sudo sed -i "s/peer/trust/g" /etc/postgresql/10/main/pg_hba.conf && \
     service postgresql start && \
     createdb -U postgres volcano && \
-    createdb -U postgres volcano_test
-# psql -c "ALTER USER postgres PASSWORD 'password';"
+    createdb -U postgres volcano_test && \
+    service postgresql stop
 
 # OpenShift
-RUN useradd -u 1001 -ms /bin/bash builder && \
-    echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
-USER 1001
-WORKDIR /home/builder
-ADD assemble /home/builder/assemble
-ADD run /home/builder/run
-LABEL io.openshift.s2i.scripts-url=image:///home/builder
+RUN echo "postgres ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers 
+USER 104
+WORKDIR /var/lib/postgresql
+ADD assemble /var/lib/postgresql/assemble
+ADD run /var/lib/postgresql/run
+LABEL io.openshift.s2i.scripts-url=image:///var/lib/postgresql
 
 EXPOSE 8080
 
